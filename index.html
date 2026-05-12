@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Code – en guide</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.7;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 100%);
+      border-bottom: 1px solid #30363d;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #d2a8ff, #79c0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: #8b949e;
+      font-size: 1.1rem;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #79c0ff;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #21262d;
+    }
+
+    p {
+      color: #c9d1d9;
+      margin-bottom: 1rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+    }
+
+    .card .icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #e6edf3;
+      margin-bottom: 0.3rem;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #8b949e;
+      margin: 0;
+    }
+
+    .steps {
+      counter-reset: steps;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .steps li {
+      counter-increment: steps;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+    }
+
+    .steps li::before {
+      content: counter(steps);
+      background: #d2a8ff;
+      color: #0d1117;
+      font-weight: 700;
+      font-size: 0.9rem;
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .steps li span {
+      color: #c9d1d9;
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: #21262d;
+      border: 1px solid #30363d;
+      border-radius: 4px;
+      padding: 0.15rem 0.45rem;
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.88rem;
+      color: #d2a8ff;
+    }
+
+    .quote {
+      border-left: 3px solid #d2a8ff;
+      padding: 0.8rem 1.2rem;
+      background: #161b22;
+      border-radius: 0 8px 8px 0;
+      color: #8b949e;
+      font-style: italic;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #484f58;
+      font-size: 0.85rem;
+      border-top: 1px solid #21262d;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Claude Code</h1>
+  <p>Anthropics AI-verktyg som hjälper dig koda direkt i terminalen</p>
+</header>
+
+<main>
+
+  <section>
+    <h2>Vad är Claude Code?</h2>
+    <p>
+      Claude Code är ett kommandoradsverktyg (CLI) från Anthropic som låter dig använda Claude – en avancerad AI –
+      direkt i din terminal eller kodeditor. Du kan ställa frågor, be Claude skriva kod, fixa buggar,
+      förklara filer och mycket mer – allt utan att lämna din arbetsmiljö.
+    </p>
+    <div class="quote">
+      "Det är som att ha en erfaren programmerarpartner alltid tillgänglig, dygnet runt."
+    </div>
+  </section>
+
+  <section>
+    <h2>Vad kan Claude Code göra?</h2>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">✍️</div>
+        <h3>Skriva kod</h3>
+        <p>Generera hela funktioner, komponenter eller skript utifrån din beskrivning.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🐛</div>
+        <h3>Hitta buggar</h3>
+        <p>Analysera kod och föreslå fixar – ofta på sekunder.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📖</div>
+        <h3>Förklara kod</h3>
+        <p>Förstå okänd kod snabbare med tydliga förklaringar på ditt språk.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔄</div>
+        <h3>Refaktorera</h3>
+        <p>Förbättra kodkvalitet och struktur utan att ändra beteendet.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧪</div>
+        <h3>Skriva tester</h3>
+        <p>Generera enhetstester och integrationstester automatiskt.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌐</div>
+        <h3>Söka på webben</h3>
+        <p>Hämta aktuell dokumentation och svar direkt i samtalet.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Så här kommer du igång</h2>
+    <ol class="steps">
+      <li><span>Installera <strong>Node.js</strong> från <em>nodejs.org</em> om du inte redan har det.</span></li>
+      <li><span>Öppna din terminal och kör: <code>npm install -g @anthropic-ai/claude-code</code></span></li>
+      <li><span>Starta Claude Code med kommandot: <code>claude</code></span></li>
+      <li><span>Logga in med ditt Anthropic-konto (eller skapa ett gratis på <em>claude.ai</em>).</span></li>
+      <li><span>Navigera till ett projekt och börja chatta – fråga vad du vill!</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Var kan man använda det?</h2>
+    <p>Claude Code finns som:</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">💻</div>
+        <h3>Terminal (CLI)</h3>
+        <p>Kör <code>claude</code> direkt i din terminal på Mac, Windows eller Linux.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🖥️</div>
+        <h3>Skrivbordsapp</h3>
+        <p>Finns som fristående app för Mac och Windows.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧩</div>
+        <h3>VS Code &amp; JetBrains</h3>
+        <p>Installera som tillägg direkt i din kodeditor.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Skapad av Louise Viman &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; Informationen baseras på Anthropics officiella dokumentation
+</footer>
+
+</body>
+</html>
